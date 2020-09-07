@@ -1,0 +1,21 @@
+/*
+ * CSS present to prove that SparkJava static files are working as intended.
+ *
+ * @author Caleb L. Power
+ *
+ */
+ 
+.header, .action {
+  font-weight: bold;
+  text-align: center;
+}
+ 
+.action {
+  margin-top: 1em;
+}
+ 
+.header {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 2em;
+}

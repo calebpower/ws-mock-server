@@ -1,0 +1,40 @@
+plugins {
+  id "com.github.johnrengelman.shadow" version "5.1.0"
+}
+
+apply plugin: 'java-library'
+apply plugin: 'eclipse'
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile 'com.sparkjava:spark-core:2.8.0'
+  compile 'org.mindrot:jbcrypt:0.3m'
+  compile group: 'org.freemarker', name: 'freemarker', version: '2.3.23'
+  compile group: 'org.json', name: 'json', version: '20190722'
+  compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+  testImplementation 'junit:junit:4.12'
+}
+
+eclipse {
+  classpath {
+    downloadJavadoc = true
+    downloadSources = true
+  }
+}
+
+jar {
+  manifest {
+    attributes 'Main-Class': 'com.calebpower.demo.webstandalone.domain.Core'
+  }
+}
+
+shadowJar {
+  shadowJar {
+    baseName = 'web-standalone-demo-java'
+    classifier = null
+    version = null
+  }
+}
