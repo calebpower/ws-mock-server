@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.calebpower.demo.webstandalone.action;
+package com.calebpower.demo.wsmockserver.api;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -25,9 +25,6 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.calebpower.demo.webstandalone.domain.Core;
 
 /**
  * Handles interactions via the WebSocket
@@ -67,9 +64,7 @@ import com.calebpower.demo.webstandalone.domain.Core;
    */
   @OnWebSocketMessage public void message(Session session, String message) {
     try {
-      JSONObject data = new JSONObject(message);
-      int time = data.getInt("time");
-      Core.getClock().set(time);
+      System.out.println("<-- " + message);
     } catch(JSONException e) {
       System.err.println("Received malformed JSON.");
     }
@@ -78,11 +73,12 @@ import com.calebpower.demo.webstandalone.domain.Core;
   /**
    * Broadcasts data to all sessions.
    * 
-   * @param payload the JSON Object datum
+   * @param payload the datum
    */
-  public static void broadcast(JSONObject payload) {
+  public static void broadcast(String payload) {
+    System.out.println("--> " + payload);
     for(Session session : sessions) {
-      session.getRemote().sendStringByFuture(payload.toString());
+      session.getRemote().sendStringByFuture(payload);
     }
   }
   

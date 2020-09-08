@@ -10,11 +10,12 @@ repositories {
 }
 
 dependencies {
-  compile 'com.sparkjava:spark-core:2.8.0'
-  compile 'org.mindrot:jbcrypt:0.3m'
-  compile group: 'org.freemarker', name: 'freemarker', version: '2.3.23'
-  compile group: 'org.json', name: 'json', version: '20190722'
-  compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+  implementation 'com.googlecode.lanterna:lanterna:3.0.3'
+  implementation 'com.sparkjava:spark-core:2.8.0'
+  implementation 'commons-cli:commons-cli:1.4'
+  implementation 'org.mindrot:jbcrypt:0.3m'
+  implementation 'org.json:json:20190722'
+  implementation 'org.slf4j:slf4j-simple:1.7.30'
   testImplementation 'junit:junit:4.12'
 }
 
@@ -27,13 +28,13 @@ eclipse {
 
 jar {
   manifest {
-    attributes 'Main-Class': 'com.calebpower.demo.webstandalone.domain.Core'
+    attributes 'Main-Class': 'com.calebpower.demo.wsmockserver.WSMockServer'
   }
 }
 
 shadowJar {
   shadowJar {
-    baseName = 'web-standalone-demo-java'
+    baseName = 'ws-mock-server'
     classifier = null
     version = null
   }
